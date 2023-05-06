@@ -6,9 +6,11 @@
   <friends-components
     v-for="friend in friends"
     :key="friend.id"
+    :id="friend.id"
     :name="friend.name"
     :phone-number="friend.phone"
     :email="friend.email"
+    @delete="deleteContact"
   ></friends-components>
   <student-components> </student-components>
   <employee-card> </employee-card>
@@ -26,7 +28,7 @@ export default {
     return {
       friends: [
         {
-          id: "0002",
+          id: "0001",
           name: "Sagar Borude",
           phone: "8805189617",
           email: "sagar.html5@gmail.com",
@@ -38,13 +40,13 @@ export default {
           email: "sagar.html5@gmail.com",
         },
         {
-          id: "0002",
+          id: "0003",
           name: "Nilesh Jadhav",
           phone: "8805189617",
           email: "sagar.html5@gmail.com",
         },
         {
-          id: "0002",
+          id: "0004",
           name: "Nilesh Jadhav",
           phone: "8805189617",
           email: "sagar.html5@gmail.com",
@@ -61,6 +63,10 @@ export default {
         email: email,
       };
       this.friends.push(newFriendContact);
+    },
+    deleteContact(friendId) {
+      console.log(friendId);
+      this.friends = this.friends.filter((friend) => friend.id !== friendId);
     },
   },
 };
